@@ -1,0 +1,24 @@
+name: Code Review CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install flake8 pylint
+      - name: Run Flake8
+        run: flake8 .
+      - name: Run Pylint
+        run: pylint $(find . -name "*.py")
