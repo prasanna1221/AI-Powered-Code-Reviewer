@@ -1,0 +1,6 @@
+torch
+transformers
+flake8
+pylint
+streamlit
+openai
